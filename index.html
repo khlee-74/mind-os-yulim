@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10243a">
+<meta name="description" content="CEO를 위한 마음 정리와 현실 적용 파트너, MIND OS">
+<title>MIND OS | YULIM Infotech</title>
+<style>
+:root{--navy:#10243a;--navy2:#173852;--blue:#23638a;--cream:#f7f5f0;--paper:#fffefa;--ink:#1d2c38;--muted:#667784;--line:#e2e7e8;--mint:#dceee7;--gold:#e6cba4;--shadow:0 14px 36px rgba(16,36,58,.08)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit}
+.topbar{background:var(--navy);color:#fff;padding:15px 20px}
+.topinner{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand img{width:100px;max-height:45px;object-fit:contain;background:#fff;border-radius:6px;padding:4px}
+.brandcopy{font-size:11px;letter-spacing:.13em;color:#c8d7e1}
+.topnote{font-size:12px;color:#c8d7e1;text-align:right}
+main{max-width:1100px;margin:0 auto;padding:26px 18px 46px}
+.hero{background:linear-gradient(125deg,#10243a,#174465 70%,#23638a);color:#fff;border-radius:24px;padding:34px 30px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.hero:after{content:"";position:absolute;width:270px;height:270px;border:1px solid rgba(255,255,255,.12);border-radius:50%;right:-90px;top:-100px;box-shadow:0 0 0 35px rgba(255,255,255,.025),0 0 0 70px rgba(255,255,255,.02)}
+.eyebrow{font-size:11px;letter-spacing:.18em;color:#b9d4e5;font-weight:700}
+h1{font-size:clamp(32px,5vw,48px);line-height:1.08;margin:12px 0 14px;letter-spacing:-.04em}
+.hero p{max-width:610px;color:#d9e4ec;margin:0;font-size:16px}
+.herofoot{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+.pill{border:1px solid rgba(255,255,255,.24);border-radius:99px;padding:7px 12px;font-size:12px;color:#e5eef4}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
+.nav button{border:1px solid var(--line);background:#fffefa;color:#425564;padding:10px 14px;border-radius:12px;font-size:13px}
+.nav button.active{background:var(--navy);color:white;border-color:var(--navy)}
+.layout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(260px,.8fr);gap:18px;align-items:start}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow);margin-bottom:16px}
+.panel h2{margin:0 0 7px;font-size:21px;letter-spacing:-.025em}
+.lead{color:var(--muted);font-size:14px;margin:0 0 18px}
+.section{display:none}.section.active{display:block}
+.choicegrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:15px 0}
+.choice{border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px 10px;text-align:left;color:var(--ink);min-height:94px}
+.choice strong{display:block;font-size:14px;margin:5px 0}
+.choice small{display:block;color:var(--muted);font-size:11px;line-height:1.4}
+.choice.selected{border-color:#2c718c;background:#edf5f7;box-shadow:inset 0 0 0 1px #2c718c}
+label{display:block;font-weight:650;font-size:13px;margin:14px 0 7px}
+textarea,input,select{width:100%;border:1px solid #d7dfe2;border-radius:12px;padding:12px;background:white;color:var(--ink);outline:none}
+textarea:focus,input:focus,select:focus{border-color:#4387a1;box-shadow:0 0 0 3px rgba(67,135,161,.12)}
+textarea{resize:vertical;min-height:120px}
+.btn{border:0;background:var(--navy);color:white;padding:11px 16px;border-radius:12px;font-weight:650}
+.btn:hover{background:#214d6a}
+.btn.secondary{background:#e8eef1;color:#233b4a}
+.btn.danger{background:#f6e8e5;color:#873e32}
+.btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.hint{font-size:12px;color:var(--muted);margin-top:10px}
+.result{border-left:3px solid #8db9ac;background:#f0f7f3;border-radius:0 12px 12px 0;padding:14px;margin-top:16px;white-space:pre-wrap}
+.result h3{font-size:15px;margin:0 0 8px}
+.result p{margin:6px 0}
+.statline{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}
+.statline:last-child{border-bottom:0}
+.quote{font-size:17px;line-height:1.55;color:#2b4657;font-weight:600}
+.smallcaps{font-size:11px;letter-spacing:.12em;color:var(--muted);font-weight:700}
+.moodrow{display:flex;gap:8px;flex-wrap:wrap}
+.mood{flex:1;min-width:60px;border:1px solid var(--line);background:white;border-radius:12px;padding:11px 7px;text-align:center}
+.mood.selected{background:#edf5f7;border-color:#4387a1}
+.mood span{display:block;font-size:23px}.mood small{font-size:11px;color:var(--muted)}
+.entry{border:1px solid var(--line);border-radius:13px;padding:14px;margin-top:10px;background:#fff}
+.entryhead{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.entryhead strong{font-size:13px}.entryhead small{color:var(--muted)}
+.entry p{font-size:13px;white-space:pre-wrap;margin:10px 0 0}
+.empty{padding:22px;text-align:center;color:var(--muted);background:#f7f8f6;border-radius:14px;font-size:13px}
+footer{border-top:1px solid var(--line);padding:20px 10px 0;margin-top:24px;color:var(--muted);font-size:12px;text-align:center}
+.footlogo{width:120px;max-height:48px;object-fit:contain;margin:0 auto 8px;display:block}
+.notice{background:#fff4df;border:1px solid #f0dfbd;border-radius:12px;padding:12px;font-size:12px;color:#6d5632;margin-top:14px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.hero{padding:28px 22px}.choicegrid{grid-template-columns:1fr}.choice{min-height:0}.topnote{display:none}.panel{padding:18px}.brand img{width:82px}.nav{display:grid;grid-template-columns:repeat(2,1fr)}.nav button{width:100%}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topinner">
+    <div class="brand">
+      <img src="yulim_logo.png" alt="YULIM Infotech 로고">
+      <div class="brandcopy">A PEOPLE-FIRST PROJECT</div>
+    </div>
+    <div class="topnote">사람을 먼저 생각하는 기술<br>YULIM Infotech Co., Ltd.</div>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <div class="eyebrow">MIND OS · CEO EDITION</div>
+    <h1>마음부터 이해하고,<br>현실은 함께 풀어갑니다.</h1>
+    <p>모든 문제를 오늘 해결할 필요는 없습니다. 정리되지 않은 생각부터 편하게 꺼내 보세요. 준비가 되었을 때, 다음 한 걸음을 함께 찾아봅니다.</p>
+    <div class="herofoot"><span class="pill">먼저 듣기</span><span class="pill">마음 정리</span><span class="pill">현실 적용</span></div>
+  </section>
+
+  <nav class="nav" aria-label="주요 메뉴">
+    <button class="active" data-tab="talk">마음 대화</button>
+    <button data-tab="mood">오늘의 마음 기록</button>
+    <button data-tab="action">현실 적용 노트</button>
+    <button data-tab="privacy">기록과 개인정보</button>
+  </nav>
+
+  <div class="layout">
+    <div>
+      <section class="section active" id="talk">
+        <div class="panel">
+          <h2>오늘, 마음이 어떠신가요?</h2>
+          <p class="lead">문장을 잘 쓸 필요도, 문제를 미리 정리할 필요도 없습니다.</p>
+          <div class="smallcaps">지금 가장 필요한 도움</div>
+          <div class="choicegrid" id="talkChoices">
+            <button class="choice selected" data-mode="comfort"><span>♡</span><strong>위로받고 싶어요</strong><small>지금은 해결책보다 마음을 이해받고 싶어요.</small></button>
+            <button class="choice" data-mode="sort"><span>◌</span><strong>생각을 정리하고 싶어요</strong><small>복잡한 마음과 사실을 나눠 보고 싶어요.</small></button>
+            <button class="choice" data-mode="solve"><span>↗</span><strong>해결책을 찾고 싶어요</strong><small>현실에서 할 수 있는 행동을 찾아봅니다.</small></button>
+          </div>
+          <label for="story">지금 마음에 걸리는 일을 적어 주세요</label>
+          <textarea id="story" placeholder="예: 직원에게 여러 번 이야기했는데 달라지는 게 없어 답답하고, 내가 잘못하고 있는 건 아닌지 모르겠어요."></textarea>
+          <div class="btnrow"><button class="btn" id="reflectBtn">내 생각 정리하기</button><button class="btn secondary" id="clearStory">내용 지우기</button></div>
+          <div class="hint">이 첫 버전은 실제 AI와 연결되어 있지 않습니다. 입력하신 내용을 외부 서버로 보내지 않고, 선택하신 방식에 맞는 정리 틀을 보여 줍니다.</div>
+          <div id="reflection" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section" id="mood">
+        <div class="panel">
+          <h2>오늘의 마음 기록</h2>
+          <p class="lead">좋고 나쁨을 평가하기보다, 현재 상태를 알아차리는 기록입니다.</p>
+          <label>오늘 마음에 가장 가까운 상태</label>
+          <div class="moodrow" id="moods">
+            <button class="mood" data-mood="지침"><span>😮‍💨</span><small>지침</small></button>
+            <button class="mood" data-mood="답답함"><span>😣</span><small>답답함</small></button>
+            <button class="mood" data-mood="불안"><span>😟</span><small>불안</small></button>
+            <button class="mood" data-mood="평온"><span>🙂</span><small>평온</small></button>
+            <button class="mood" data-mood="의욕"><span>🌱</span><small>의욕</small></button>
+          </div>
+          <label for="energy">오늘의 에너지</label>
+          <select id="energy"><option value="1">1 — 거의 소진됨</option><option value="2">2 — 많이 지침</option><option value="3" selected>3 — 보통</option><option value="4">4 — 괜찮음</option><option value="5">5 — 여유 있음</option></select>
+          <label for="moodNote">오늘 나를 가장 힘들게 하거나 지지해 준 것</label>
+          <textarea id="moodNote" placeholder="짧게 한두 문장만 적어도 충분합니다."></textarea>
+          <div class="btnrow"><button class="btn" id="saveMood">오늘 기록 저장</button></div>
+          <div id="moodMessage" class="hint" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section" id="action">
+        <div class="panel">
+          <h2>현실 적용 노트</h2>
+          <p class="lead">문제를 한 번에 해결하려 하지 말고, 통제할 수 있는 작은 행동부터 정합니다.</p>
+          <label for="problem">지금 해결하고 싶은 문제</label>
+          <textarea id="problem" placeholder="예: 거래처 대금 입금이 늦어져 이번 달 현금흐름이 걱정됩니다."></textarea>
+          <label for="facts">확인된 사실</label>
+          <textarea id="facts" style="min-height:80px" placeholder="추측과 구분해서, 확인한 사실만 적어 봅니다."></textarea>
+          <label for="control">내가 통제할 수 있는 것</label>
+          <textarea id="control" style="min-height:80px" placeholder="예: 입금 예정일 확인, 지출 일정 점검, 거래처에 연락하기"></textarea>
+          <label for="nextStep">다음 한 걸음</label>
+          <input id="nextStep" placeholder="예: 오늘 오후 거래처 담당자에게 입금일 확인">
+          <label for="when">언제 실행할까요?</label>
+          <input id="when" type="date">
+          <div class="btnrow"><button class="btn" id="saveAction">실행 계획 저장</button><button class="btn secondary" id="clearAction">양식 비우기</button></div>
+          <div id="actionMessage" class="hint" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section" id="privacy">
+        <div class="panel">
+          <h2>기록과 개인정보</h2>
+          <p class="lead">마음에 관한 기록은 민감할 수 있습니다. 저장 방식과 한계를 알고 사용해 주세요.</p>
+          <div class="statline"><span>저장 위치</span><strong>현재 사용 중인 브라우저</strong></div>
+          <div class="statline"><span>외부 AI 전송</span><strong>없음 (초기 버전)</strong></div>
+          <div class="statline"><span>로그인 / 서버 계정</span><strong>없음</strong></div>
+          <div class="statline"><span>기기 간 동기화</span><strong>지원하지 않음</strong></div>
+          <div class="notice">공용 컴퓨터에서는 민감한 내용을 입력하지 마세요. 브라우저 데이터 삭제, 기기 분실 또는 초기화로 기록이 사라질 수 있습니다. 이 버전은 전문적인 정신건강 치료나 위기 지원을 대신하지 않습니다.</div>
+          <div class="btnrow"><button class="btn secondary" id="exportData">내 기록 내보내기 (.json)</button><button class="btn danger" id="deleteData">이 브라우저의 모든 기록 삭제</button></div>
+          <p class="hint" id="privacyMessage" aria-live="polite"></p>
+        </div>
+      </section>
+    </div>
+
+    <aside>
+      <div class="panel">
+        <div class="smallcaps">MIND OS PRINCIPLE</div>
+        <p class="quote">“사람을 위한다는 것은, 언제나 좋은 말만 하는 것이 아닙니다.”</p>
+        <p class="lead">힘들 때는 마음을 받아 주고, 현실을 봐야 할 때는 정직하게 돕고, 지쳤을 때는 쉬어도 된다고 말해 주는 것.</p>
+      </div>
+      <div class="panel">
+        <h2>내 공간 요약</h2>
+        <p class="lead">이 브라우저에 저장된 기록 수입니다.</p>
+        <div class="statline"><span>마음 기록</span><strong id="moodCount">0</strong></div>
+        <div class="statline"><span>실행 계획</span><strong id="actionCount">0</strong></div>
+        <div class="statline"><span>대화 정리</span><strong id="reflectionCount">0</strong></div>
+        <button class="btn secondary" style="width:100%;margin-top:12px" id="showRecords">최근 기록 보기</button>
+        <div id="recentRecords"></div>
+      </div>
+      <div class="panel">
+        <div class="smallcaps">A PEOPLE-FIRST PROJECT</div>
+        <p style="font-size:14px;margin-bottom:0">기술보다 사람을 먼저 생각합니다. 이 프로젝트는 마음을 열고 현실을 다시 바라볼 수 있는 작은 공간을 만드는 데서 시작합니다.</p>
+      </div>
+    </aside>
+  </div>
+  <footer>
+    <img class="footlogo" src="yulim_logo.png" alt="YULIM Infotech 로고">
+    <div><strong>MIND OS</strong> · A people-first project by YULIM Infotech Co., Ltd.</div>
+    <div style="margin-top:5px">초기 프로토타입 · AI 상담 기능은 아직 연결되지 않았습니다.</div>
+  </footer>
+</main>
+<script>
+const KEYS={mood:'mindos_moods_v1',actions:'mindos_actions_v1',reflections:'mindos_reflections_v1'};
+let selectedMode='comfort', selectedMood='';
+const read=(key)=>{try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return []}};
+const write=(key,data)=>localStorage.setItem(key,JSON.stringify(data));
+const esc=(s)=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const now=()=>new Date().toLocaleString('ko-KR',{dateStyle:'medium',timeStyle:'short'});
+function switchTab(id){document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
+document.querySelectorAll('#talkChoices .choice').forEach(b=>b.addEventListener('click',()=>{selectedMode=b.dataset.mode;document.querySelectorAll('#talkChoices .choice').forEach(x=>x.classList.toggle('selected',x===b));}));
+document.querySelectorAll('.mood').forEach(b=>b.addEventListener('click',()=>{selectedMood=b.dataset.mood;document.querySelectorAll('.mood').forEach(x=>x.classList.toggle('selected',x===b));}));
+document.getElementById('reflectBtn').addEventListener('click',()=>{
+ const story=document.getElementById('story').value.trim();
+ if(!story){document.getElementById('story').focus();document.getElementById('reflection').innerHTML='<div class="result">먼저 마음에 걸리는 일을 편하게 적어 주세요. 한 문장이어도 괜찮습니다.</div>';return;}
+ const prompts={
+ comfort:{title:'지금은 마음을 먼저 돌봐도 괜찮습니다',body:'지금 겪는 일이 버겁게 느껴지는 데에는 이유가 있을 수 있습니다. 당장 해결책을 내놓지 않아도 됩니다. 잠시 숨을 고르고, 무엇이 가장 마음을 무겁게 하는지 한 가지씩 살펴봐도 괜찮습니다.',next:'지금 이야기에서 가장 마음이 아픈 부분은 무엇인가요?'},
+ sort:{title:'생각을 세 갈래로 나눠 봅니다',body:'① 확인된 사실은 무엇인가요?\\n② 그 사실 때문에 느끼는 감정은 무엇인가요?\\n③ 아직 확인되지 않은 걱정이나 예상은 무엇인가요?\\n\\n이 세 가지를 나누면 문제 전체가 조금 더 선명해질 수 있습니다.',next:'이 문제에서 이미 확인한 사실 한 가지는 무엇인가요?'},
+ solve:{title:'해결은 작고 구체적인 한 걸음부터',body:'① 지금 가장 시급한 문제를 한 문장으로 적습니다.\\n② 내가 통제할 수 있는 것과 없는 것을 나눕니다.\\n③ 되돌리기 어렵거나 큰 비용이 드는 결정은 서두르지 않습니다.\\n④ 오늘 할 수 있는 가장 작은 행동 하나를 정합니다.',next:'오늘 안에 할 수 있는 가장 작은 행동은 무엇인가요?'}
+ };
+ const p=prompts[selectedMode];
+ const entry={id:Date.now(),date:now(),mode:selectedMode,story};
+ const all=read(KEYS.reflections);all.unshift(entry);write(KEYS.reflections,all.slice(0,100));
+ document.getElementById('reflection').innerHTML='<div class="result"><h3>'+p.title+'</h3><p>'+esc(p.body).replace(/\n/g,'<br>')+'</p><p><strong>'+p.next+'</strong></p><p class="hint">참고: 이것은 AI의 개인화된 답변이 아니라, 생각을 정리하기 위한 기본 안내입니다.</p><button class="btn secondary" id="toAction" type="button">현실 적용 노트로 옮겨가기</button></div>';
+ document.getElementById('toAction').addEventListener('click',()=>{document.getElementById('problem').value=story;switchTab('action');});
+ updateCounts();
+});
+document.getElementById('clearStory').addEventListener('click',()=>{document.getElementById('story').value='';document.getElementById('reflection').innerHTML='';});
+document.getElementById('saveMood').addEventListener('click',()=>{
+ if(!selectedMood){document.getElementById('moodMessage').textContent='마음 상태를 하나 선택해 주세요.';return;}
+ const arr=read(KEYS.mood);arr.unshift({id:Date.now(),date:now(),mood:selectedMood,energy:document.getElementById('energy').value,note:document.getElementById('moodNote').value.trim()});write(KEYS.mood,arr.slice(0,200));
+ document.getElementById('moodMessage').textContent='오늘의 기록을 이 브라우저에 저장했습니다.';document.getElementById('moodNote').value='';updateCounts();
+});
+document.getElementById('saveAction').addEventListener('click',()=>{
+ const problem=document.getElementById('problem').value.trim(),facts=document.getElementById('facts').value.trim(),control=document.getElementById('control').value.trim(),nextStep=document.getElementById('nextStep').value.trim(),when=document.getElementById('when').value;
+ if(!problem&&!facts&&!control&&!nextStep){document.getElementById('actionMessage').textContent='저장할 내용을 한 가지 이상 적어 주세요.';return;}
+ const arr=read(KEYS.actions);arr.unshift({id:Date.now(),date:now(),problem,facts,control,nextStep,when});write(KEYS.actions,arr.slice(0,200));
+ document.getElementById('actionMessage').textContent='실행 계획을 이 브라우저에 저장했습니다.';updateCounts();
+});
+document.getElementById('clearAction').addEventListener('click',()=>['problem','facts','control','nextStep','when'].forEach(id=>document.getElementById(id).value=''));
+function updateCounts(){document.getElementById('moodCount').textContent=read(KEYS.mood).length;document.getElementById('actionCount').textContent=read(KEYS.actions).length;document.getElementById('reflectionCount').textContent=read(KEYS.reflections).length;}
+document.getElementById('showRecords').addEventListener('click',()=>{
+ const records=[...read(KEYS.mood).map(x=>({...x,type:'마음 기록',summary:(x.mood||'')+' · 에너지 '+(x.energy||'-')})),...read(KEYS.actions).map(x=>({...x,type:'실행 계획',summary:x.problem||x.nextStep||'계획'})),...read(KEYS.reflections).map(x=>({...x,type:'대화 정리',summary:x.story||''}))].sort((a,b)=>b.id-a.id).slice(0,6);
+ document.getElementById('recentRecords').innerHTML=records.length?records.map(x=>'<div class="entry"><div class="entryhead"><strong>'+esc(x.type)+'</strong><small>'+esc(x.date)+'</small></div><p>'+esc(x.summary)+'</p></div>').join(''):'<div class="empty">아직 저장된 기록이 없습니다.</div>';
+});
+document.getElementById('exportData').addEventListener('click',()=>{
+ const data={product:'MIND OS',exportedAt:new Date().toISOString(),moods:read(KEYS.mood),actions:read(KEYS.actions),reflections:read(KEYS.reflections)};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='mind-os-my-records.json';a.click();URL.revokeObjectURL(url);
+ document.getElementById('privacyMessage').textContent='기록 내보내기를 요청했습니다. 다운로드 폴더를 확인해 주세요.';
+});
+document.getElementById('deleteData').addEventListener('click',()=>{
+ if(!confirm('이 브라우저에 저장된 MIND OS 기록을 모두 삭제할까요? 삭제 후에는 복구할 수 없습니다.'))return;
+ Object.values(KEYS).forEach(k=>localStorage.removeItem(k));updateCounts();document.getElementById('recentRecords').innerHTML='';document.getElementById('privacyMessage').textContent='이 브라우저의 MIND OS 기록을 삭제했습니다.';
+});
+updateCounts();
+</script>
+</body>
+</html>
